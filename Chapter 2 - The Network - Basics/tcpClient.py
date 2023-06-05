@@ -36,7 +36,7 @@ except socket.error as error_message:
     sys.exit(1) 
 
 try:
-    # Send the server some data.
+    # Encode the string into bytes and end the server some data.
     client.send("GET / HTTP/1.1\r\nHost: 127.0.0.1\r\n\r\n".encode())
 
 except socket.error as error_message:  
@@ -57,5 +57,8 @@ except socket.error as error_message:
     # Unsuccessful termination.
     sys.exit(1)
 
-# Print out the response.
-print(response)
+# Print out the response after decoding it from bytes to a string.
+print(response.decode('utf-8'))
+
+# Close the socket connection.
+client.close()

@@ -18,7 +18,7 @@ except socket.error as error_message:
     sys.exit(1) 
 
 try:
-    # Send the server some data.
+    # Encode the string into bytes and end the server some data.
     client.sendto("AAABBBCCC".encode(), (target_host, target_port))
 
 except socket.error as error_message:  
@@ -39,5 +39,8 @@ except socket.error as error_message:
     # Unsuccessful termination.
     sys.exit(1)
 
-# Print out the data.
-print(data)
+# Print out the response data after decoding it from bytes to a string.
+print(data.decode('utf-8'))
+
+# Close the socket connection.
+client.close()
